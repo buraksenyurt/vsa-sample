@@ -15,11 +15,15 @@ Bu proje .net tabanlı bir Vertical Slice Architecture uyarlamasıdır. Amacım 
 sudo docker run --name moviesdb -e POSTGRES_USER=scoth -e POSTGRES_PASSWORD=tiger -p 5435:5432 -v /data:/var/lib/postgresql/data -d postgres
 
 # Migration için EF tool'a ihtiyacımız olacaktır
+# Eğer sistemde yüklü değil bu komutla yüklenebilir
 dotnet tool install -g dotnet-ef
 
 # Migration planı oluşturup çalıştırmak için
 dotnet ef migrations add InitialCreate
 dotnet ef database update
+
+# Bu işlemden sonra istenirse seed sınıfındaki örnek veriler için program çalıştırılabilir
+# Program.cs'teki ilgili kod parçasının açılması yeterlidir ama bu bir zorunluluk değil
 
 # Proje için gerekli nuget paketlerinin yüklenmesi
 cd MovieApp

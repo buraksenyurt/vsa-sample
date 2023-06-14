@@ -21,11 +21,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-using (var scope = app.Services.CreateScope())
-{
-    var dataContext = scope.ServiceProvider.GetRequiredService<MovieDbContext>();
-    new Seed().SeedData(dataContext);
-}
+// // Seed dosyasındaki ilk verileri yüklemek bir seferlik çalıştırılan kod parçası
+// // Bu nedenle yorum dışı bırakılmıştır.
+// using (var scope = app.Services.CreateScope())
+// {
+//     var dataContext = scope.ServiceProvider.GetRequiredService<MovieDbContext>();
+//     new Seed().SeedData(dataContext);
+// }
 
 app.UseAuthorization();
 app.MapControllers();

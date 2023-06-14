@@ -32,7 +32,7 @@ public class Seed
             Title = "Inception",
             Description = " Bir hırsızlık ekibi bilinçaltına girip fikirleri çalmak için tehlikeli yöntemler kullanırken, başka bir iş teklifiyle gerçeklik ile rüya dünyası arasında karmaşık bir yolculuğa çıkarlar.",
             ImbdPoint = 8.8,
-            ReleaseDate = new DateTime(2010, 10, 16),
+            ReleaseDate = DateTime.SpecifyKind(new DateTime(2010, 10, 16), DateTimeKind.Utc),
             TotalRevenue = 828M
         });
 
@@ -43,7 +43,7 @@ public class Seed
             Title = "Blade Runner 2049",
             Description = "Bir yapay zeka dedektifi olan Blade Runner izini sürdüğü eski bir Blade Runner'ı keşfetmesinin ardından daha büyük bir gizem ve komployu çözmek için maceraya atılır.",
             ImbdPoint = 8.0,
-            ReleaseDate = new DateTime(2017, 9, 6),
+            ReleaseDate = DateTime.SpecifyKind(new DateTime(2017, 9, 6), DateTimeKind.Utc),
             TotalRevenue = 260.5M
         });
 
@@ -54,8 +54,10 @@ public class Seed
             Title = "Interstellar",
             Description = "Gelecekte dünya çiftlik arazileriyle boşalan bir hale dönüşürken bir grup kaşif insan yaşamının devamı için başka bir güneş sistemine seyahat etmeye çalışır ve yeni bir yuva arayışında uzayda derin bir yolculuğa çıkar.",
             ImbdPoint = 8.6,
-            ReleaseDate = new DateTime(2014, 11, 7),
+            ReleaseDate = DateTime.SpecifyKind(new DateTime(2014, 11, 7), DateTimeKind.Utc),
             TotalRevenue = 677.5M
         });
+
+        context.SaveChanges();
     }
 }
