@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using MovieApp.Data;
+using MovieApp.ServiceManager;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<IFeatureServiceManager, FeatureServiceManager>();
 builder.Services.AddDbContext<MovieDbContext>(options =>
     {
         options.UseNpgsql(builder.Configuration["ConnectionStrings:DbConnStr"]);
