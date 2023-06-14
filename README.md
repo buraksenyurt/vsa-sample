@@ -37,3 +37,13 @@ dotnet add package MediatR
 dotnet add package MediatR.Extensions.Microsoft.DependencyInjection 
 dotnet add package Swashbuckle.AspNetCore
 ```
+
+## Yapılanlar
+
+- Proje iskeleti oluşturulup gerekli bağımlılıklar eklendi.
+- Dolaşımdaki varlıklar için model sınıfları oluşturuldu.
+- Postgresql odaklı Entity Framework Data Context sınıfı geliştirildi, migration planını takiben bir Seeding operasyonu işletildi.
+- Projedeki özellik setleri ile ilintili sözleşmeler(interface tipleri) ve uygulayıcı sınıfları eklendi. (IGenreService, GenreService, IMovieService, MovieService)
+- Her feature için ayrıştırılmış servisleri DI container'a register eden ve onlar için unit of work görevi üstlenen yönetici sınıf eklendi. (IFeatureServiceManager, FeatureServiceManager)
+
+**ÖRNEK HENÜZ TAMAMLANMADI**
