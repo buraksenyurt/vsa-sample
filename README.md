@@ -45,5 +45,53 @@ dotnet add package Swashbuckle.AspNetCore
 - Postgresql odaklı Entity Framework Data Context sınıfı geliştirildi, migration planını takiben bir Seeding operasyonu işletildi.
 - Projedeki özellik setleri ile ilintili sözleşmeler(interface tipleri) ve uygulayıcı sınıfları eklendi. (IGenreService, GenreService, IMovieService, MovieService)
 - Her feature için ayrıştırılmış servisleri DI container'a register eden ve onlar için unit of work görevi üstlenen yönetici sınıf eklendi. (IFeatureServiceManager, FeatureServiceManager)
+- CQRS özelinde sorgu ve komutları ayıracak bir düzene geçildi. Genres ve Movies klasörlerinde Command ve Query isimli klasörler açılıp select ile insert,update,delete gibi aksiyonları ele alan nesneler buralara dağıtıldı.
+
+## Çalışma Zamanı
+
+Örnek proje esasında REST tabanlı bir web api hizmeti. Denemeden önce elbette postgresql tabanlı docker container'ın çalıştığından emin olmak lazım. Sonrasında aşağıdaki komutlardan birisi ile ilerlenebilir.
+
+```bash
+dotnet run
+
+# veya kod değişikliklerini de anında görmek için
+dotnet watch
+```
+
+Çalışma zamanı için örnek sorgular;
+
+```text
+İşlem : Tüm film türlerinin listelenmesi
+Metot : Http Get
+Adres : http://localhost:5074/api/genres
+```
+![assets/runtime_01.png](assets/runtime_01.png)
+
+```text
+İşlem : Belli bir film türüne ait bilgi çekilmesi
+Metot : Http Get
+Adres : http://localhost:5074/api/genres/2
+```
+![assets/runtime_02.png](assets/runtime_02.png)
+
+```text
+İşlem : Belli türde film eklenmesi
+Metot : Http Post
+Adres : http://localhost:5074/api/movies
+Body  : json
+{
+    "title": "2001: A Space Odyssey",
+    "description": "Stanley Kubrick'in yönettiği ve Arthur C. Clarke'ın aynı adlı romanından uyarlanan bir bilim kurgu filmidir.",
+    "totalRevenue": 65.50,
+    "year": 1968,
+    "month": 4,
+    "day": 2,
+    "imdbPoint": 8.3,
+    "genreId": 1
+}
+```
+
+![assets/runtime_03.png](assets/runtime_03.png)
+
 
 **ÖRNEK HENÜZ TAMAMLANMADI**
