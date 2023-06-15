@@ -1,15 +1,23 @@
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MovieApp.Data;
 using MovieApp.ServiceManager;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<IFeatureServiceManager, FeatureServiceManager>();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+});
+
 builder.Services.AddDbContext<MovieDbContext>(options =>
     {
         options.UseNpgsql(builder.Configuration["ConnectionStrings:DbConnStr"]);
         options.LogTo(Console.WriteLine, new[] { Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.CommandExecuting });
     });
+
+builder.Services.AddScoped<IFeatureServiceManager, FeatureServiceManager>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
