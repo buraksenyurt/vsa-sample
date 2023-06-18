@@ -51,4 +51,18 @@ public class MoviesController
             return NotFound(ex.Message);
         }
     }
+
+    [HttpDelete]
+    public async Task<ActionResult> DeleteMovie(DeleteMovie.DeleteMovieCommand command)
+    {
+        try
+        {
+            await _mediator.Send(command);
+            return NoContent();
+        }
+        catch (NotFoundMovieException ex)
+        {
+            return NotFound(ex.Message);
+        }
+    }
 }
