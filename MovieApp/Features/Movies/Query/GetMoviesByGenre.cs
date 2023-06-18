@@ -36,7 +36,6 @@ public class GetMoviesByGenre
         }
         public async Task<IEnumerable<MovieResult>> Handle(GetMoviesQuery request, CancellationToken cancellationToken)
         {
-            Console.WriteLine($"{request.GenreId} id sorgulanacak");
             var genre = await _serviceManager.Genre.GetGenreAsync(request.GenreId);
             if (genre == null)
             {

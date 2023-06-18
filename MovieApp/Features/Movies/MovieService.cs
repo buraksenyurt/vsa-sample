@@ -8,27 +8,30 @@ public class MovieService
     : IMovieService
 {
     private readonly MovieDbContext _context;
+    private readonly ILogger _logger;
 
-    public MovieService(MovieDbContext context)
+    public MovieService(MovieDbContext context, ILogger logger)
     {
         _context = context;
+        _logger = logger;
     }
 
     public void AddMovieToGenre(int genreId, Movie movie)
     {
+        _logger.LogWarning($"{movie.Title}, {genreId} kategorisine eklenecek");
         movie.GenreId = genreId;
         _context.Movies.Add(movie);
     }
 
-    public void DeleteMovie(int movieId)
+    public void DeleteMovie(Movie movie)
     {
-        var movie = _context.Movies.FirstOrDefault(m => m.Id == movieId);
-        if (movie != null)
-            _context.Remove(movie);
+        _logger.LogWarning($"{movie.Title} silinecek");
+        _context.Movies.Remove(movie);
     }
 
     public async Task<IEnumerable<Movie>> GetAllMoviesAsync(int genreId)
     {
+        _logger.LogWarning($"{genreId} nolu türe ait filmler istendi");
         return await _context.Movies.Where(m => m.GenreId == genreId).OrderBy(m => m.Title).ToListAsync();
     }
 

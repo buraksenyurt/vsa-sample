@@ -4,6 +4,11 @@ using MovieApp.Data;
 using MovieApp.ServiceManager;
 
 var builder = WebApplication.CreateBuilder(args);
+ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder.AddConsole();
+    //builder.AddDebug();
+});
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddMediatR(cfg =>
