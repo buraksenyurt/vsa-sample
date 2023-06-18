@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MovieApp.Features.Movies.Command;
+using MovieApp.Features.Movies.Exceptions;
+using static MovieApp.Features.Movies.Query.GetMoviesByGenre;
 
 namespace MovieApp.Features.Movies;
 
@@ -29,6 +31,24 @@ public class MoviesController
             {
                 ex.Message
             });
+        }
+    }
+
+    [HttpGet("{genreId}")]
+    public async Task<ActionResult<IEnumerable<MovieResult>>> GetMovies(int genreId)
+    {
+        try
+        {
+            var query = new GetMoviesQuery
+            {
+                GenreId = genreId
+            };
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+        catch (NotFoundMoviesByGenreException ex)
+        {
+            return NotFound(ex.Message);
         }
     }
 }
