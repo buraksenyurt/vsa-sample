@@ -93,5 +93,15 @@ Body  : json
 
 ![assets/runtime_03.png](assets/runtime_03.png)
 
+```text
+İşlem : Belli türe ait filmlerin listesinin çekilmesi
+Metot : Http Get
+Adres : http://localhost:5074/api/movies/1
+```
+
+![assets/runtime_04.png](assets/runtime_04.png)
+
+![assets/runtime_05.png](assets/runtime_05.png)
+
 
 **ÖRNEK HENÜZ TAMAMLANMADI**
