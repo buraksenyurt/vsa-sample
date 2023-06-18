@@ -9,8 +9,8 @@ public class MapperProfile
 {
     public MapperProfile()
     {
-        CreateMap<Genre, GetAllGenres.GenreResult>();
+        CreateMap<Genre, GetAllGenres.AllGenreResult>();
         CreateMap<Genre, GetGenre.GenreResult>();
-        CreateMap<Genre, GetGenreDetail.GenreResult>();
+        CreateMap<Genre, GetGenreDetail.GenreDetailResult>();
     }
 }

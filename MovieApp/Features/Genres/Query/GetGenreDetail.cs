@@ -7,9 +7,9 @@ namespace MovieApp.Features.Genres.Query;
 
 public class GetGenreDetail
 {
-    public class GetGenreQuery : IRequest<GenreResult> { public int Id { get; set; } }
+    public class GetGenreQuery : IRequest<GenreDetailResult> { public int Id { get; set; } }
 
-    public class GenreResult
+    public class GenreDetailResult
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -20,7 +20,7 @@ public class GetGenreDetail
     }
 
     public class Handler
-        : IRequestHandler<GetGenreQuery, GenreResult>
+        : IRequestHandler<GetGenreQuery, GenreDetailResult>
     {
         private readonly IFeatureServiceManager _serviceManager;
         private readonly IMapper _mapper;
@@ -31,7 +31,7 @@ public class GetGenreDetail
             _mapper = mapper;
         }
 
-        public async Task<GenreResult> Handle(GetGenreQuery request, CancellationToken cancellationToken)
+        public async Task<GenreDetailResult> Handle(GetGenreQuery request, CancellationToken cancellationToken)
         {
             var genre = await _serviceManager.Genre.GetGenreAsync(request.Id);
             if (genre == null)
@@ -39,7 +39,7 @@ public class GetGenreDetail
                 throw new NotFoundGenreException(request.Id);
             }
             var movies = await _serviceManager.Movie.GetAllMoviesAsync(genre.Id);
-            var mapped = _mapper.Map<GenreResult>(genre);
+            var mapped = _mapper.Map<GenreDetailResult>(genre);
 
             mapped.TotalMovies = movies.Count();
             mapped.TotalRevenue = movies.Sum(m => m.TotalRevenue);

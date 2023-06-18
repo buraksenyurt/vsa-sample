@@ -15,8 +15,8 @@ public class GenresController
         _mediator = mediator;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<GetAllGenres.GenreResult>>> GetGenresAsync()
+    [HttpGet(Name ="Get Genre")]
+    public async Task<ActionResult<IEnumerable<GetAllGenres.AllGenreResult>>> GetGenresAsync()
     {
         var result = await _mediator.Send(new GetAllGenres.GetAllGenresQuery());
 
@@ -26,7 +26,7 @@ public class GenresController
         return Ok(result);
     }
 
-    [HttpGet("{genreId}")]
+    [HttpGet("{genreId}",Name ="Get Genre By Id")]
     public async Task<ActionResult<GetGenre.GenreResult>> GetGenreAsync(int genreId)
     {
         var result = await _mediator.Send(new GetGenre.GetGenreQuery() { Id = genreId });
@@ -37,8 +37,8 @@ public class GenresController
         return Ok(result);
     }
 
-    [HttpGet("detail/{genreId}")]
-    public async Task<ActionResult<GetGenreDetail.GenreResult>> GetGenreDetailAsync(int genreId)
+    [HttpGet("detail/{genreId}",Name ="Get Genre Detail")]
+    public async Task<ActionResult<GetGenreDetail.GenreDetailResult>> GetGenreDetailAsync(int genreId)
     {
         var result = await _mediator.Send(new GetGenreDetail.GetGenreQuery() { Id = genreId });
 

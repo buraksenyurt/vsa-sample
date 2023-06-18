@@ -6,9 +6,9 @@ namespace MovieApp.Features.Genres.Query;
 
 public class GetAllGenres
 {
-    public class GetAllGenresQuery : IRequest<IEnumerable<GenreResult>> { }
+    public class GetAllGenresQuery : IRequest<IEnumerable<AllGenreResult>> { }
 
-    public class GenreResult
+    public class AllGenreResult
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -16,7 +16,7 @@ public class GetAllGenres
     }
 
     public class Handler
-        : IRequestHandler<GetAllGenresQuery, IEnumerable<GenreResult>>
+        : IRequestHandler<GetAllGenresQuery, IEnumerable<AllGenreResult>>
     {
         private readonly IFeatureServiceManager _serviceManager;
         private readonly IMapper _mapper;
@@ -27,10 +27,10 @@ public class GetAllGenres
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<GenreResult>> Handle(GetAllGenresQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<AllGenreResult>> Handle(GetAllGenresQuery request, CancellationToken cancellationToken)
         {
             var genres = await _serviceManager.Genre.GetAllGenresAsync();
-            var mappedList = _mapper.Map<IEnumerable<GenreResult>>(genres);
+            var mappedList = _mapper.Map<IEnumerable<AllGenreResult>>(genres);
             return mappedList;
         }
     }
