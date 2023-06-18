@@ -121,6 +121,34 @@ Adres : http://localhost:5074/api/genres/detail/1
 
 ![assets/runtime_06.png](assets/runtime_06.png)
 
+```text
+İşlem : Bir filme ait veri içeriğini güncellemek için
+Metot : Http Put
+Adres : http://localhost:5074/api/movies
+Body  : json
+{
+    "id": 6,
+    "title": "2001:A Space Odyssey",
+    "description": "Stanley Kubrick'in yönettiği ve Arthur C. Clarke'ın aynı adlı romanından uyarlanmış olan harika bir bilim kurgu filmidir.",
+    "totalRevenue": 165.50,
+    "year": 1968,
+    "month": 4,
+    "day": 2,
+    "imdbPoint": 8.5,
+    "genreId": 1
+}
+```
+
+![assets/runtime_07.png](assets/runtime_07.png)
+
+```text
+İşlem : Belli bir ID değerine sahip film detayını görmek için
+Metot : Http Get
+Adres : http://localhost:5074/api/movies/detail/6
+```
+
+![assets/runtime_08.png](assets/runtime_08.png)
+
 ## Senaryo İşletimi
 
-**Yeni bir filmin eklenmesini değerlendirelim.** Süreç istemci tarafında bir HTTP Post çağrısı yapmasıyla başlar. Çağrıyı Features/Movies klasöründeki MoviesController sınıfındaki AddMovie fonksiyonu karşılar. Fonksiyon parametresi AddMovieToGenre.AddMovieCommand türündendir. JSON içeriği bu sınıf örneğine serileşir. AddMovie fonksiyonu gelen komutu Meidator'a yönlendirir. Mediatr gelen Command'in hangi Handler sınıfı ile ilişkili olduğunu bilir. Bakınız -> Movies/Command klasöründeki public class Handler : IRequestHandler<AddMovieCommand, MovieResult> sınıfı. Mediatr bu komuta ilişkin handler nesnesini bulduktan sonra Handle metodunu işletir. Handle metodu implemente edilen arayüze göre şekillenmiştir ve Controller'dan inen komut nesne örneğini parametre olarak kullanabilir. Handle fonksiyonu içerisinde, Handler sınfına enjekte edilen IFeatureService örneği üstünden gerekli çağrılar yapılır. FeatureService örneğinin Movie özelliğinden erişilen MovieService sınıfının ilgili fonksiyonları çağırılır. Tür bilgisi olup olmadığı kontrol edilir, şartlar uygunsa film bilgisi işlenmek üzere ilgili AddMovieToGenre fonksiyonuna gönderilir. MovieService içerisinde bu fonksiyon sınıfa enjekte edilen DataContext nesnesini kullanır ve ilgili verinin EF üstünden veri tabanına yazılması sağlanır. Handle içerisinde son kısımda eklenen film bilgisine karşılık gelen ve komuttan controller'a, oradan da HTTP çağrısına dönecek olan MovieResult için bir mapping işlevi uygulanır.
+**Yeni bir filmin eklenmesini değerlendirelim.** Süreç istemci tarafında bir HTTP Post çağrısı yapmasıyla başlar. Çağrıyı Features/Movies klasöründeki MoviesController sınıfındaki AddMovie fonksiyonu karşılar. Fonksiyon parametresi AddMovieToGenre.AddMovieCommand türündendir. JSON içeriği bu sınıf örneğine serileşir. AddMovie fonksiyonu gelen komutu Meidator'a yönlendirir. Mediatr gelen Command'in hangi Handler sınıfı ile ilişkili olduğunu bilir. Bakınız - Movies/Command klasöründeki public class Handler : IRequestHandler<AddMovieCommand, MovieResult> sınıfı. Mediatr bu komuta ilişkin handler nesnesini bulduktan sonra Handle metodunu işletir. Handle metodu implemente edilen arayüze göre şekillenmiştir ve Controller'dan inen komut nesne örneğini parametre olarak kullanabilir. Handle fonksiyonu içerisinde, Handler sınfına enjekte edilen IFeatureService örneği üstünden gerekli çağrılar yapılır. FeatureService örneğinin Movie özelliğinden erişilen MovieService sınıfının ilgili fonksiyonları çağırılır. Tür bilgisi olup olmadığı kontrol edilir, şartlar uygunsa film bilgisi işlenmek üzere ilgili AddMovieToGenre fonksiyonuna gönderilir. MovieService içerisinde bu fonksiyon sınıfa enjekte edilen DataContext nesnesini kullanır ve ilgili verinin EF üstünden veri tabanına yazılması sağlanır. Handle içerisinde son kısımda eklenen film bilgisine karşılık gelen ve komuttan controller'a, oradan da HTTP çağrısına dönecek olan MovieResult için bir mapping işlevi uygulanır.
