@@ -36,4 +36,15 @@ public class GenresController
 
         return Ok(result);
     }
+
+    [HttpGet("detail/{genreId}")]
+    public async Task<ActionResult<GetGenreDetail.GenreResult>> GetGenreDetailAsync(int genreId)
+    {
+        var result = await _mediator.Send(new GetGenreDetail.GetGenreQuery() { Id = genreId });
+
+        if (result == null)
+            return NotFound();
+
+        return Ok(result);
+    }
 }

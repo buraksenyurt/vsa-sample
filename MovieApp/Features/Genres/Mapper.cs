@@ -11,5 +11,6 @@ public class MapperProfile
     {
         CreateMap<Genre, GetAllGenres.GenreResult>();
         CreateMap<Genre, GetGenre.GenreResult>();
+        CreateMap<Genre, GetGenreDetail.GenreResult>();
     }
 }
