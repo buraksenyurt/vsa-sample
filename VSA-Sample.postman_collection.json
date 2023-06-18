@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "e34c5e72-2d65-450b-9023-d0023ae50d03",
+		"name": "VSA-Sample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1401662"
+	},
+	"item": [
+		{
+			"name": "Get All Genres",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5074/api/genres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5074",
+					"path": [
+						"api",
+						"genres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Movies By Genre Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5074/api/movies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5074",
+					"path": [
+						"api",
+						"movies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Genre By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5074/api/genres/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5074",
+					"path": [
+						"api",
+						"genres",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Genre Detail by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5074/api/genres/detail/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5074",
+					"path": [
+						"api",
+						"genres",
+						"detail",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get movie Details by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5074/api/movies/detail/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5074",
+					"path": [
+						"api",
+						"movies",
+						"detail",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new Movie To Specific Genre",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"2001: A Space Odyssey\",\n    \"description\": \"Stanley Kubrick'in yönettiği ve Arthur C. Clarke'ın aynı adlı romanından uyarlanan bir bilim kurgu filmidir.\",\n    \"totalRevenue\": 65.50,\n    \"year\": 1968,\n    \"month\": 4,\n    \"day\": 2,\n    \"imdbPoint\": 8.30,\n    \"genreId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5074/api/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5074",
+					"path": [
+						"api",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Movie",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movieId\": 6,\n    \"title\": \"2001:A Space Odyssey\",\n    \"description\": \"Stanley Kubrick'in yönettiği ve Arthur C. Clarke'ın aynı adlı romanından uyarlanmış nefis muhteşem bir bilim kurgu filmidir.\",\n    \"totalRevenue\": 67.99,\n    \"year\": 1968,\n    \"month\": 4,\n    \"day\": 1,\n    \"ImdbPoint\": 8.9,\n    \"genreId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5074/api/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5074",
+					"path": [
+						"api",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Movie by Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movieId\": 8\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5074/api/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5074",
+					"path": [
+						"api",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
