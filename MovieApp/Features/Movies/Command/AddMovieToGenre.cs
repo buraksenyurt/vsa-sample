@@ -16,7 +16,7 @@ public class AddMovieToGenre
         public int Year { get; set; }
         public int Month { get; set; }
         public int Day { get; set; }
-        public double ImbdPoint { get; set; }
+        public double ImdbPoint { get; set; }
         public int GenreId { get; set; }
     }
 
@@ -50,7 +50,7 @@ public class AddMovieToGenre
                 Title = request.Title,
                 Description = request.Description,
                 GenreId = request.GenreId,
-                ImbdPoint = request.ImbdPoint,
+                ImdbPoint = request.ImdbPoint,
                 TotalRevenue = request.TotalRevenue,
                 ReleaseDate = DateTime.SpecifyKind(new DateTime(request.Year, request.Month, request.Day), DateTimeKind.Utc)
             };

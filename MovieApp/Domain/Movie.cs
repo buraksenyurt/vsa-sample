@@ -9,7 +9,7 @@ public class Movie{
     public string Description { get; set; }
     public decimal TotalRevenue { get; set; }
     public DateTime ReleaseDate { get; set; }
-    public double ImbdPoint { get; set; }
+    public double ImdbPoint { get; set; }
     public int GenreId { get; set; }
     public Genre Genre { get; set; }
 }

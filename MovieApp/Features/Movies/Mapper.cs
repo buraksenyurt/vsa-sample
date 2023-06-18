@@ -12,5 +12,6 @@ public class MapperProfile
     {
         CreateMap<Movie, AddMovieToGenre.MovieResult>();
         CreateMap<Movie, GetMoviesByGenre.MovieResult>();
+        CreateMap<Movie, GetMovie.MovieDetailResult>();
     }
 }

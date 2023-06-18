@@ -5,15 +5,15 @@ using MovieApp.ServiceManager;
 
 namespace MovieApp.Features.Movies.Query;
 
-public class GetMoviesByGenre
+public class GetMovie
 {
-    public class GetMoviesQuery
-        : IRequest<IEnumerable<MovieResult>>
+    public class GetMovieDetailQuery
+        : IRequest<MovieDetailResult>
     {
-        public int GenreId { get; set; }
+        public int MovieId { get; set; }
     }
 
-    public class MovieResult
+    public class MovieDetailResult
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -24,7 +24,7 @@ public class GetMoviesByGenre
     }
 
     public class Handler
-        : IRequestHandler<GetMoviesQuery, IEnumerable<MovieResult>>
+        : IRequestHandler<GetMovieDetailQuery, MovieDetailResult>
     {
         private readonly IFeatureServiceManager _serviceManager;
         private readonly IMapper _mapper;
@@ -34,15 +34,14 @@ public class GetMoviesByGenre
             _serviceManager = serviceManager;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<MovieResult>> Handle(GetMoviesQuery request, CancellationToken cancellationToken)
+        public async Task<MovieDetailResult> Handle(GetMovieDetailQuery request, CancellationToken cancellationToken)
         {
-            var genre = await _serviceManager.Genre.GetGenreAsync(request.GenreId);
-            if (genre == null)
+            var movie = await _serviceManager.Movie.GetMovieAsync(request.MovieId);
+            if (movie == null)
             {
-                throw new NotFoundMoviesByGenreException(request.GenreId);
+                throw new NotFoundMovieException(request.MovieId);
             }
-            var movies = await _serviceManager.Movie.GetAllMoviesAsync(genre.Id);
-            var result = _mapper.Map<IEnumerable<MovieResult>>(movies);
+            var result = _mapper.Map<MovieDetailResult>(movie);
             return result;
         }
     }
